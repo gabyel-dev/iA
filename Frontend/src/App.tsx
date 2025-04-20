@@ -22,13 +22,16 @@ function App() {
     isSent(true);
 
     try {
-      const res = await fetch("http://localhost:5000/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user_input: userInput }),
-      });
+      const res = await fetch(
+        "https://terrific-youthfulness-production.up.railway.app/generate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ user_input: userInput }),
+        }
+      );
 
       const data: { response: string; user_input: string } = await res.json();
       setConversation((prev) => [
