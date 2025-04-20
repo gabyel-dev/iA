@@ -56,16 +56,33 @@ function App() {
         className="text-white p-4 shadow max-h-200 overflow-y-scroll w-full flex flex-col gap-9
       rounded-[30px] custom-scroll mb-30 md:mb-4"
       >
-        {conversation.map((msg, index) => (
-          <div key={index} className="flex flex-col gap-5">
-            <div className="w-full flex items-end justify-end">
-              <div className="bg-[var(--container)] rounded-full px-3 py-2">
-                {msg.user}
+        <div>
+          {conversation.map((msg, index) => (
+            <div key={index} className="flex flex-col gap-5">
+              <div className="w-full flex items-end justify-end">
+                <div className="bg-[var(--container)] rounded-full px-3 py-2">
+                  {msg.user}
+                </div>
               </div>
+              <div dangerouslySetInnerHTML={{ __html: msg.response }} />
             </div>
-            <div dangerouslySetInnerHTML={{ __html: msg.response }} />
+          ))}
+        </div>
+
+        <div
+          className={`flex items-start justify-start gap-2 text-white ${
+            loading ? "block" : "hidden"
+          }`}
+        >
+          <div
+            className={`w-5 h-5 border-b-2 border-white rounded-full animate-spin  ${
+              loading ? "block" : "hidden"
+            }`}
+          ></div>
+          <div>
+            <p>Thinking...</p>
           </div>
-        ))}
+        </div>
       </div>
       <form
         onSubmit={handleSubmit}
